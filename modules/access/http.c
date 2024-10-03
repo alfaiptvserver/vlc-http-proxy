@@ -221,7 +221,7 @@ static int Open( vlc_object_t *p_this )
     if( psz == NULL )
     {
         msg_Dbg(p_access, "querying proxy for %s", psz_url);
-        psz = vlc_getProxyUrl(psz_url);
+        psz = vlc_getProxyUrl(p_this, psz_url);
 
         if (psz != NULL)
             msg_Dbg(p_access, "proxy: %s", psz);

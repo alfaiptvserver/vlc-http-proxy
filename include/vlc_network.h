@@ -288,7 +288,7 @@ static inline void net_SetPort (struct sockaddr *addr, uint16_t port)
     }
 }
 
-VLC_API char *vlc_getProxyUrl(const char *);
+VLC_API char *vlc_getProxyUrl(vlc_object_t *obj, const char *);
 
 # ifdef __cplusplus
 }

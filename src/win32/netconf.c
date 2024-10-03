@@ -29,15 +29,21 @@
 #include <vlc_network.h>
 #include <vlc_url.h>
 
-char *vlc_getProxyUrl(const char *psz_url)
+char *vlc_getProxyUrl(vlc_object_t *obj, const char *psz_url)
 {
     VLC_UNUSED(psz_url);
 
-    char *proxy = config_GetPsz( (vlc_object_t *)(NULL), "http-proxy" );
+    if (obj == NULL) {
+        return NULL;
+    }
+
+    char *proxy = var_InheritString( obj, "http-proxy" );
+
     if (proxy == NULL)
         return NULL;
 
-    char *proxy_pwd = config_GetPsz( (vlc_object_t *)(NULL), "http-proxy-pwd" );
+    char *proxy_pwd = var_InheritString( obj, "http-proxy-pwd" );
+
     if (proxy_pwd == NULL)
         return proxy;
 
